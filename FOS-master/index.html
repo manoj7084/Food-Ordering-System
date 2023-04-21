@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome To GROUP-7</title>
+        <link rel="stylesheet" href="CSS/Style.css">
+        <link rel="stylesheet" href="CSS/scroll_bar.css">
+        <script src="javascript.js"></script>
+        <script src="https://kit.fontawesome.com/299880b93d.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <header class="navigation">
+            <a href="#" class="logo"><span>GROUP-7</span></a>
+            <ul>
+                <li>
+                    <div class="searchBar">
+                        <input type="text" id="search_query"placeholder="Search">
+                        <button id="search" onclick="search_it()"><img src="PHOTOS/search.png" class="nav_icon" alt=""></button>
+                    </div>
+                </li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="add_shop_first.html">Bussiness</a></li>
+                <li class="account_box"><a href="log_in.html"><img src="PHOTOS/account.png" class="nav_icon account" alt=""></a></li>
+            </ul>
+        </header>
+
+        <div class="banner">
+            <div class="content">
+                <h1><span>Y</span>our <span>H</span>appy <span>P</span>lace</h1>
+                <p>India's No.1 food ordering company</p>
+                <a href="#menu">Explore Now</a>
+            </div>
+        </div>
+
+        <div class="menu" id="menu">
+            <div class="title">
+                <h1><span>B</span>est <span>D</span>eals</h1>
+            </div>
+            <div class="box" id="box"></div>
+        </div>
+
+        <div class="contact" id="contact">
+            <div class="title">
+                <h1><span>C</span>ontact <span>U</span>s</h1>
+            </div>
+            <div class="contact_content">
+                <div class="form">
+                    <input type="text" placeholder="John Doe">
+                    <input type="email" placeholder="xyz@gmail.com">
+                    <textarea rows="4" cols="50" style="resize: none;"></textarea>
+                </div>
+                <div class="mapBox">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.6639087590597!2d72.62794261533745!3d23.14595701751272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e81eef6edfe01%3A0x9c45315fe44cea2f!2sRaj%20Labdhi%20Heritage%20Block-A%2C%20Raj%20Labdhi%20Heritage%2C%20Gujarat%20382421!5e0!3m2!1sen!2sin!4v1649607988813!5m2!1sen!2sin" width="470" height="470" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <h1>
+                &#169<span>Group-7</span> All Right Reserved | IIIT Vadodara
+            </h1>
+        </div>
+
+        <script>
+            const items = ["Dabeli","Dal Bhat","Khaman","Khandvi","Laddu","Paneer tikka masala","Pani puri","Pav bhaji","Undhiyu"];
+            const price = [70,20,50,70,50,70,50,30,450,10];
+            const shop_name = ["Amul","Jay Ambe Restaurant","Havmor","Plapinoz","Jimit Vadapav","Kaushik Panipuri","Seasonal Centre","Gujarati Restaurant","Patang Hotel"];
+
+            let html_code = "";
+
+            for(let i=0; i<items.length; i++){
+                let image_address = "PHOTOS/" + items[i] + ".jpg";
+                html_code  +=   
+                    "<div class=\"contentBox\">"
+                    + "<div class=\"imgBox\">"
+                    +    "<img src=\"" + image_address + "\"" +  "alt=\"Image should be here\">"
+                    + "</div>"
+                    +
+                    "<div class=\"content\">"
+                    +    "<p><a href=\"\">" + items[i] + "</a></p>"
+                    +    "<p class=\"price\">&#8377 " +  price[i] + "</p>"
+                    +    "<p>" + shop_name[i] + "</p>"
+                    + "</div></div>" ;
+                }
+                document.getElementById("box").innerHTML = html_code;
+
+                var query = search_query.value;
+                const myArray = search_query.value.split(" ");
+                // let no_of_queries = countWords(search_query.value);
+                console.log(myArray);
+
+
+                for(let i=0; i<items.length; i++){
+                    for(let j=0; j<shop_name.length; j++){
+                        if(items[i]==search_query.value){
+                            console.log("true");
+                        }
+                    }
+                }
+
+                function search_it(){
+                    var query = search_query.value;
+                const myArray = query.split(" ");
+                // let no_of_queries = countWords(search_query.value);
+                console.log(myArray);
+
+                
+
+                const items = ["Dabeli","Dal Bhat","Khaman","Khandvi","Laddu","Paneer tikka masala","Pani puri","Pav bhaji","Undhiyu"];
+                const price = [70,20,50,70,50,70,50,30,450,10];
+                const shop_name = ["Amul","Jay Ambe Restaurant","Havmor","Plapinoz","Jimit Vadapav","Kaushik Panipuri","Seasonal Centre","Gujarati Restaurant","Patang Hotel"];
+                const final_arr = items.concat(shop_name);
+
+
+                for(let i=0; i<items.length; i++){
+                    for(let j=0; j<shop_name.length; j++){
+                        if((myArray[i].toLowerCase == final_arr[j].toLowerCase)){
+                            console.log("complete");
+                            window.open("buy_items.html");
+                            localStorage.setItem('item_name', final_arr[i]);
+                        }
+                    }
+                }
+                }
+
+
+
+        </script>
+    </body>
+</html>
